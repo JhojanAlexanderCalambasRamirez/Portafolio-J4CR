@@ -6,11 +6,42 @@ export interface Project {
   highlights: string[];
   stack: string[];
   period: string;
-  type: "professional" | "academic" | "freelance";
+  type: "professional" | "academic" | "freelance" | "personal";
   metrics?: { label: string; value: string }[];
+  github?: string;
 }
 
 export const projects: Project[] = [
+  {
+    id: "macntfs",
+    title: "MacNTFS",
+    subtitle: "App nativa macOS para lectura/escritura NTFS",
+    description:
+      "Aplicación nativa de macOS construida con Swift 6 y SwiftUI que permite leer y escribir en discos NTFS (Windows) sin reformatear. Detecta discos automáticamente, los monta con soporte completo de escritura y ofrece un gestor de archivos integrado con drag-and-drop.",
+    highlights: [
+      "Detección automática de discos vía DiskArbitration API con montaje R/W en un clic usando ntfs-3g",
+      "Gestor de archivos integrado: copiar, mover, renombrar, eliminar con verificación de integridad",
+      "Wizard de primera ejecución que instala dependencias (macFUSE, ntfs-3g) con diálogos nativos",
+      "Soporte Apple Silicon + Intel, dark mode, bilingüe (EN/ES) con cambio instantáneo",
+      "XPC Services para operaciones privilegiadas (mount/unmount con root) de forma segura",
+    ],
+    stack: [
+      "Swift 6",
+      "SwiftUI",
+      "DiskArbitration",
+      "macFUSE",
+      "ntfs-3g",
+      "XPC Services",
+      "Shell",
+    ],
+    period: "Jun 2026",
+    type: "personal",
+    github: "https://github.com/JhojanAlexanderCalambasRamirez/MacNTFS",
+    metrics: [
+      { label: "Plataforma", value: "macOS" },
+      { label: "Licencia", value: "MIT" },
+    ],
+  },
   {
     id: "gis-catastro",
     title: "GIS & Catastro",

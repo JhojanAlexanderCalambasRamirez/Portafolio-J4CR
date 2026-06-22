@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/components/ui/Icons";
 import { projects } from "@/data/projects";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -9,6 +10,7 @@ const typeLabels = {
   professional: "Profesional",
   academic: "Académico",
   freelance: "Freelance",
+  personal: "Personal",
 } as const;
 
 export default function Projects() {
@@ -84,7 +86,7 @@ export default function Projects() {
                     ))}
                   </ul>
 
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <div className="mt-6 flex flex-wrap items-center gap-2">
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
@@ -93,6 +95,19 @@ export default function Projects() {
                         {tech}
                       </span>
                     ))}
+
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-auto inline-flex items-center gap-2 px-4 py-1.5 text-xs font-medium rounded-lg border border-edge text-muted hover:text-accent hover:border-accent/40 transition-all"
+                      >
+                        <GithubIcon size={14} />
+                        Ver repo
+                        <ExternalLink size={12} />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
