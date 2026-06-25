@@ -43,6 +43,38 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "mdconverter",
+    title: "MdConverter",
+    subtitle: "Conversor de documentos a Markdown, multiplataforma",
+    description:
+      "Aplicación de escritorio multiplataforma (macOS y Windows) que convierte documentos locales a Markdown limpio y estructurado. Soporta PDF, DOCX, XLSX, PPTX, CSV, HTML, JSON, XML, EPUB y más. Todo el procesamiento ocurre localmente, sin enviar archivos a servidores externos.",
+    highlights: [
+      "Arquitectura de tres capas: frontend React + TypeScript, backend Rust (Tauri v2) y sidecar Python como proceso persistente",
+      "Protocolo de comunicación JSON sobre stdin/stdout entre Tauri y Python con correlación de IDs por request",
+      "Motor de conversión MarkItDown de Microsoft con wrapper propio para manejo de errores y resolución de rutas",
+      "Conversión individual y por lotes con seguimiento de progreso por archivo y soporte de cancelación",
+      "Distribución nativa: .dmg para macOS y .exe (NSIS installer) para Windows, con scripts de build automatizados",
+      "Drag & drop, dark/light mode, bilingüe (EN/ES), manejo de colisiones de nombres en archivos de salida",
+    ],
+    stack: [
+      "Tauri v2",
+      "Rust",
+      "React",
+      "TypeScript",
+      "Python",
+      "MarkItDown",
+      "UV",
+      "PyInstaller",
+    ],
+    period: "Jun 2026",
+    type: "personal",
+    github: "https://github.com/JhojanAlexanderCalambasRamirez/MdConverter",
+    metrics: [
+      { label: "Plataformas", value: "2" },
+      { label: "Formatos", value: "10+" },
+    ],
+  },
+  {
     id: "gis-catastro",
     title: "GIS & Catastro",
     subtitle: "Plataforma de gestión catastral geoespacial",
