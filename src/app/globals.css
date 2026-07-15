@@ -14,7 +14,7 @@
   --text-dim: #a8a29e;
   --border-color: #ddd9d4;
   --gradient-start: #d97706;
-  --gradient-end: #ea580c;
+  --gradient-end: #92400e;
 }
 
 .dark {
@@ -28,8 +28,8 @@
   --text-muted: #c4bab3;
   --text-dim: #7a706a;
   --border-color: #3a3330;
-  --gradient-start: #fbbf24;
-  --gradient-end: #f97316;
+  --gradient-start: #fde68a;
+  --gradient-end: #d97706;
 }
 
 @theme inline {
