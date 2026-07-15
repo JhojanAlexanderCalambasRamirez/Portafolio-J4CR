@@ -17,13 +17,13 @@ export const projects: Project[] = [
     title: "MacNTFS",
     subtitle: "App nativa macOS para lectura/escritura NTFS",
     description:
-      "Aplicación nativa de macOS construida con Swift 6 y SwiftUI que permite leer y escribir en discos NTFS (Windows) sin reformatear. Detecta discos automáticamente, los monta con soporte completo de escritura y ofrece un gestor de archivos integrado con drag-and-drop.",
+      "macOS puede leer discos NTFS (el formato de Windows) pero no escribir en ellos de forma nativa: es una limitación del sistema operativo. MacNTFS resuelve eso con una app Swift 6 que detecta el disco automáticamente, lo monta con soporte completo de escritura y expone un gestor de archivos con drag-and-drop. Sin reformatear el disco, sin abrir la terminal, sin pagar por software de terceros. El reto técnico principal fue manejar operaciones privilegiadas de mount/unmount con root de forma segura usando XPC Services, siguiendo el modelo de seguridad de Apple.",
     highlights: [
-      "Detección automática de discos vía DiskArbitration API con montaje R/W en un clic usando ntfs-3g",
-      "Gestor de archivos integrado: copiar, mover, renombrar, eliminar con verificación de integridad",
-      "Wizard de primera ejecución que instala dependencias (macFUSE, ntfs-3g) con diálogos nativos",
-      "Soporte Apple Silicon + Intel, dark mode, bilingüe (EN/ES) con cambio instantáneo",
-      "XPC Services para operaciones privilegiadas (mount/unmount con root) de forma segura",
+      "Detecta cualquier disco NTFS conectado vía DiskArbitration API y lo monta con escritura completa en un clic mediante ntfs-3g, sin intervención del usuario",
+      "Gestor de archivos integrado con drag-and-drop: copiar, mover, renombrar y eliminar archivos con verificación de integridad tras cada operación",
+      "Wizard de configuración inicial que instala macFUSE y ntfs-3g con diálogos nativos sin necesidad de abrir la terminal",
+      "XPC Services para aislar operaciones privilegiadas (mount/unmount con root) del proceso principal, siguiendo las guías de seguridad de macOS",
+      "Universal Binary para Apple Silicon e Intel, dark mode nativo, interfaz bilingüe EN/ES con cambio instantáneo",
     ],
     stack: [
       "Swift 6",
@@ -47,14 +47,14 @@ export const projects: Project[] = [
     title: "MdConverter",
     subtitle: "Conversor de documentos a Markdown, multiplataforma",
     description:
-      "Aplicación de escritorio multiplataforma (macOS y Windows) que convierte documentos locales a Markdown limpio y estructurado. Soporta PDF, DOCX, XLSX, PPTX, CSV, HTML, JSON, XML, EPUB y más. Todo el procesamiento ocurre localmente, sin enviar archivos a servidores externos.",
+      "Convertir un PDF, un DOCX o una presentación de PowerPoint a Markdown limpio y estructurado es más difícil de lo que parece: cada formato tiene su propia estructura interna y parsing diferente. MdConverter lo resuelve con una arquitectura de tres capas: interfaz en React/TypeScript, motor nativo en Rust con Tauri v2 y un sidecar Python que ejecuta la conversión real como proceso persistente. Todo el procesamiento ocurre localmente, ningún archivo sale del equipo. Soporta PDF, DOCX, XLSX, PPTX, CSV, HTML, JSON, XML, EPUB y más. Disponible como instalador nativo para macOS y Windows.",
     highlights: [
-      "Arquitectura de tres capas: frontend React + TypeScript, backend Rust (Tauri v2) y sidecar Python como proceso persistente",
-      "Protocolo de comunicación JSON sobre stdin/stdout entre Tauri y Python con correlación de IDs por request",
-      "Motor de conversión MarkItDown de Microsoft con wrapper propio para manejo de errores y resolución de rutas",
-      "Conversión individual y por lotes con seguimiento de progreso por archivo y soporte de cancelación",
-      "Distribución nativa: .dmg para macOS y .exe (NSIS installer) para Windows, con scripts de build automatizados",
-      "Drag & drop, dark/light mode, bilingüe (EN/ES), manejo de colisiones de nombres en archivos de salida",
+      "Arquitectura de tres capas desacopladas: frontend React/TypeScript, runtime nativo en Rust (Tauri v2) y sidecar Python que arranca una sola vez como proceso persistente",
+      "Canal de comunicación JSON sobre stdin/stdout entre Tauri y el sidecar Python, con correlación de IDs por request para manejar múltiples conversiones en paralelo",
+      "Motor de conversión basado en MarkItDown de Microsoft con wrapper propio para normalización de rutas, manejo de errores y compatibilidad en ambas plataformas",
+      "Conversión individual y por lotes con progreso en tiempo real por archivo, cancelación en cualquier momento y manejo automático de colisiones de nombres",
+      "Distribución nativa lista para usar: instalador .dmg firmado para macOS y .exe (NSIS) para Windows, generados por scripts de build automatizados",
+      "Drag & drop, dark/light mode nativo, interfaz bilingüe EN/ES",
     ],
     stack: [
       "Tauri v2",
@@ -79,12 +79,13 @@ export const projects: Project[] = [
     title: "GIS & Catastro",
     subtitle: "Plataforma de gestión catastral geoespacial",
     description:
-      "Sistema fullstack para gestión de +50,000 registros catastrales bajo estándar internacional LADM-COL v4.1, con vistas interactivas para geometrías espaciales y formularios complejos con validaciones en tiempo real.",
+      "El catastro es el inventario oficial de todos los predios de un municipio: su ubicación, sus límites exactos, su propietario. Digitalizarlo bajo el estándar internacional LADM-COL v4.1 es un requisito legal en Colombia. Este sistema gestiona +50,000 predios activos de municipios reales con un backend geoespacial sobre PostGIS, consulta y edición de geometrías directamente en el navegador, y flujos de captura diseñados para funcionarios municipales sin formación técnica en GIS. El principal desafío fue mantener la integridad topológica de las geometrías mientras el sistema operaba bajo consultas espaciales complejas a gran escala.",
     highlights: [
-      "APIs RESTful con Django REST Framework, autenticación y validaciones a nivel de servicio",
-      "Reducción de ~40% en tiempos de respuesta optimizando consultas espaciales con GeoDjango y PostGIS",
-      "Vistas interactivas en React para consulta y edición de geometrías (GeoJSON, Shapefile)",
-      "Transformaciones de coordenadas EPSG:9377/4326 y validaciones topológicas",
+      "Backend con Django REST Framework: APIs RESTful, autenticación por roles y validaciones geoespaciales a nivel de servicio bajo el estándar LADM-COL v4.1",
+      "Reducción del ~40% en tiempos de respuesta mediante optimización de consultas espaciales con GeoDjango y PostGIS sobre +50,000 registros prediales",
+      "Frontend en React para visualizar y editar geometrías prediales (GeoJSON, Shapefile) en tiempo real, reemplazando software GIS externo en el flujo operativo",
+      "Formularios multistep con validaciones automáticas: integridad topológica, referencias cruzadas y reglas normativas, diseñados para perfiles no técnicos",
+      "Transformaciones entre sistemas de referencia EPSG:9377 y EPSG:4326 conformes al marco legal catastral colombiano",
     ],
     stack: [
       "Python",
@@ -106,14 +107,14 @@ export const projects: Project[] = [
   {
     id: "ai-classifier",
     title: "Clasificación de Imágenes con IA",
-    subtitle: "Sistema MLOps en Azure Cloud",
+    subtitle: "Pipeline MLOps de extremo a extremo en Azure",
     description:
-      "Pipeline completo de ML: entrenamiento de modelo DeiT-Tiny + SVM con MLflow, API REST con FastAPI + gRPC, interfaz web para clasificación en tiempo real, y despliegue containerizado en Azure con escalado automático.",
+      "La mayoría de los proyectos de ML se quedan en el notebook. Este no. El objetivo era construir un sistema completo: desde el entrenamiento reproducible hasta el despliegue en producción en Azure con escalado automático. El modelo combina DeiT-Tiny (vision transformer) con un clasificador SVM, se entrena y versiona con MLflow sobre Azure ML, y se expone vía API REST y canal gRPC para consumo en tiempo real. El reto central fue hacer que el pipeline funcionara de forma idéntica en una Mac Apple Silicon y en un cluster de Azure, con arranque en frío menor a 30 segundos.",
     highlights: [
-      "Modelo DeiT-Tiny + SVM entrenado con MLflow en Azure ML (cluster elástico, escala a 0)",
-      "API REST con FastAPI + canal gRPC en Azure Container Instance, arranque en frío <30s",
-      "Docker multi-arquitectura (linux/amd64) desde Apple Silicon a Azure Container Registry",
-      "Kubernetes con HPA para escalado automático estable ante picos de tráfico 3x",
+      "Modelo DeiT-Tiny + SVM entrenado y versionado con MLflow sobre Azure ML, con cluster elástico que escala a cero para optimizar costos en inactividad",
+      "API REST con FastAPI y canal gRPC paralelo desplegados en Azure Container Instance: arranque en frío menor a 30 segundos desde estado detenido",
+      "Pipeline de build Docker multi-arquitectura (linux/amd64) compilado desde Apple Silicon y publicado directo a Azure Container Registry sin emulación",
+      "Orquestación con Kubernetes y HPA (Horizontal Pod Autoscaler) para escalar automáticamente ante picos de tráfico de hasta 3x la carga base",
     ],
     stack: [
       "Python",
@@ -138,13 +139,13 @@ export const projects: Project[] = [
     title: "BatteryIPhoneStatus",
     subtitle: "Monitor de batería iPhone en tiempo real desde macOS",
     description:
-      "Sistema nativo dual-platform (macOS + iOS) en Swift y SwiftUI. La app iOS lee la batería del iPhone y la envía al Mac, donde se muestra en la barra de menú con notificaciones inteligentes. Descubrimiento automático entre dispositivos vía Bonjour/mDNS, sin configurar IPs ni servidores externos.",
+      "Apple no expone el nivel de batería del iPhone a otras apps ni al Mac de forma nativa: es información que queda atrapada en el dispositivo. BatteryIPhoneStatus lo resuelve con dos apps coordinadas en Swift: una en iOS que lee la batería y actúa como servidor de red local, y una en macOS que muestra el porcentaje en la barra de menú con notificaciones automáticas. El descubrimiento de dispositivos es automático vía Bonjour/mDNS: sin configurar IPs, sin cuentas, sin servidores externos. Todo ocurre en la red local.",
     highlights: [
-      "Menu bar nativo en macOS con icono dinámico de batería y notificaciones (20%, 10%, 100%)",
-      "Descubrimiento automático entre dispositivos vía Bonjour/mDNS, sin configurar IPs",
-      "Comunicación TCP en red local con Network.framework (NWListener, NWBrowser, NWConnection)",
-      "Swift Package compartido entre ambas apps para modelos y constantes de red",
-      "UI con círculo de progreso animado en iOS, reconexión automática si se pierde la conexión",
+      "Menu bar nativo en macOS con ícono de batería que se actualiza en tiempo real y notificaciones automáticas en umbrales críticos: 20%, 10% y carga completa",
+      "Descubrimiento automático de dispositivos en la red local vía Bonjour/mDNS: el Mac encuentra el iPhone sin configurar nada manualmente",
+      "Comunicación TCP directa con Network.framework (NWListener, NWBrowser, NWConnection) y reconexión automática si se pierde la conexión",
+      "Swift Package local compartido entre ambas apps para modelos de datos y constantes de red, garantizando coherencia entre plataformas",
+      "UI iOS con círculo de progreso animado y estado de conexión en tiempo real",
     ],
     stack: [
       "Swift",
