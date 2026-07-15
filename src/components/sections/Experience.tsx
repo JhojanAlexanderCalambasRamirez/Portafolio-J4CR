@@ -52,6 +52,12 @@ export default function Experience() {
                     </div>
                   </div>
 
+                  {exp.summary && (
+                    <p className="mt-4 text-sm text-muted leading-relaxed">
+                      {exp.summary}
+                    </p>
+                  )}
+
                   <ul className="mt-5 space-y-2.5">
                     {exp.highlights.map((item) => (
                       <li
