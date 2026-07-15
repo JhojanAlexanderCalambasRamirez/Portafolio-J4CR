@@ -5,31 +5,31 @@
 :root {
   --bg: #fafaf8;
   --surface: #ffffff;
-  --raised: #f5f3ef;
+  --raised: #f2f0ec;
   --accent: #b45309;
   --accent-hover: #92400e;
-  --accent-glow: rgba(180, 83, 9, 0.1);
+  --accent-glow: rgba(180, 83, 9, 0.12);
   --foreground: #1c1917;
-  --text-muted: #57534e;
+  --text-muted: #44403c;
   --text-dim: #a8a29e;
-  --border-color: #e7e5e4;
+  --border-color: #ddd9d4;
   --gradient-start: #d97706;
-  --gradient-end: #dc2626;
+  --gradient-end: #ea580c;
 }
 
 .dark {
   --bg: #0c0a09;
-  --surface: #1a1816;
-  --raised: #231f1d;
-  --accent: #f59e0b;
-  --accent-hover: #fbbf24;
-  --accent-glow: rgba(245, 158, 11, 0.08);
-  --foreground: #fafaf9;
-  --text-muted: #a8a29e;
-  --text-dim: #6b6560;
-  --border-color: #302b28;
-  --gradient-start: #f59e0b;
-  --gradient-end: #ef4444;
+  --surface: #161210;
+  --raised: #211d1a;
+  --accent: #fbbf24;
+  --accent-hover: #fcd34d;
+  --accent-glow: rgba(251, 191, 36, 0.1);
+  --foreground: #fefce8;
+  --text-muted: #c4bab3;
+  --text-dim: #7a706a;
+  --border-color: #3a3330;
+  --gradient-start: #fbbf24;
+  --gradient-end: #f97316;
 }
 
 @theme inline {
