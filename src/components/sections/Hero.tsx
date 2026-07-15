@@ -69,7 +69,7 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href="#proyectos"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-[#09090b] font-semibold rounded-lg hover:bg-accent-hover transition-all shadow-[0_0_24px_var(--accent-glow)] hover:shadow-[0_0_32px_var(--accent-glow)]"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent-hover transition-all shadow-[0_0_24px_var(--accent-glow)] hover:shadow-[0_0_32px_var(--accent-glow)]"
             >
               Ver proyectos
               <ArrowDown size={16} />
